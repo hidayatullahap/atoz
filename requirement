@@ -6,16 +6,16 @@ Product
 (Value + 10.000)
 Generate 8 letters of random character to be the Shipping Code.
 
-PrepaidBalance
--phone_number
--total
+// PrepaidBalance
+// -phone_number
+// -total
 
 (Total = Value + 5%)
 If the paid time happened in the daylight (9AM to 5PM) there is 90% success rate for inserting the balance, 40% otherwise.
 Random the success rate by the hour and mark that the process is failed or success
 
 Order
--order_type
+-product_type
 -order_number (10 digit random number)
 -status_code
 -sum
@@ -32,7 +32,7 @@ Order Status
 -canceled
 -seen
 
-Order Type
+Product Type
 -id
 -name
 

@@ -1,10 +1,10 @@
-<?php namespace Atoz\User;
+<?php namespace Atoz\Commerce;
 
 use Backend;
 use System\Classes\PluginBase;
 
 /**
- * user Plugin Information File
+ * commerce Plugin Information File
  */
 class Plugin extends PluginBase
 {
@@ -16,7 +16,7 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'user',
+            'name'        => 'commerce',
             'description' => 'No description provided yet...',
             'author'      => 'atoz',
             'icon'        => 'icon-leaf'
@@ -50,10 +50,10 @@ class Plugin extends PluginBase
      */
     public function registerComponents()
     {
-        // return []; // Remove this line to activate
+        return []; // Remove this line to activate
 
         return [
-            'Atoz\User\Components\Account' => 'AtozAccount',
+            'Atoz\Commerce\Components\MyComponent' => 'myComponent',
         ];
     }
 
@@ -67,8 +67,8 @@ class Plugin extends PluginBase
         return []; // Remove this line to activate
 
         return [
-            'atoz.user.some_permission' => [
-                'tab' => 'user',
+            'atoz.commerce.some_permission' => [
+                'tab' => 'commerce',
                 'label' => 'Some permission'
             ],
         ];
@@ -84,11 +84,11 @@ class Plugin extends PluginBase
         return []; // Remove this line to activate
 
         return [
-            'user' => [
-                'label'       => 'user',
-                'url'         => Backend::url('atoz/user/mycontroller'),
+            'commerce' => [
+                'label'       => 'commerce',
+                'url'         => Backend::url('atoz/commerce/mycontroller'),
                 'icon'        => 'icon-leaf',
-                'permissions' => ['atoz.user.*'],
+                'permissions' => ['atoz.commerce.*'],
                 'order'       => 500,
             ],
         ];

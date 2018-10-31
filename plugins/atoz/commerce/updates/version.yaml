@@ -1,0 +1,8 @@
+1.0.1: First version of commerce
+1.0.2:
+    - Create Tables
+    - create_order_status_logs_table.php
+    - create_order_statuses_table.php
+    - create_orders_table.php
+    - create_products_table.php
+    - seed_order_statuses_table.php
