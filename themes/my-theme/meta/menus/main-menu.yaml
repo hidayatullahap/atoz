@@ -2,23 +2,49 @@ name: 'Main Menu'
 items:
     -
         title: Home
+        type: cms-page
+        code: ''
+        reference: home
+        viewBag:
+            isHidden: '1'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Privacy Policy'
         nesting: ''
         type: cms-page
         url: ''
         code: ''
-        reference: home
+        reference: static/privacy-policy
         cmsPage: ''
         replace: ''
         viewBag:
+            isHidden: '1'
+            cssClass: ''
             isExternal: '0'
+    -
+        title: Balance
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: balance
+        cmsPage: ''
+        replace: ''
+        viewBag:
             isHidden: '0'
             cssClass: ''
+            isExternal: '0'
     -
-        title: 'Privacy Policy'
+        title: Product
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
-        reference: static/privacy-policy
+        reference: product
+        cmsPage: ''
+        replace: ''
         viewBag:
-            isHidden: '1'
+            isHidden: '0'
             cssClass: ''
             isExternal: '0'

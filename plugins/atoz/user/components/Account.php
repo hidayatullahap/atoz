@@ -140,6 +140,7 @@ class Account extends ComponentBase
             }
 
             $rules = [
+                'name'    => 'required',
                 'email'    => 'required|email|between:6,255',
                 'password' => 'required|between:4,255|confirmed'
             ];
