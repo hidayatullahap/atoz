@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->string('status_code');
             $table->integer('sum')->nullable()->unsigned();
             $table->integer('total')->nullable()->unsigned();
+            $table->string('shipping_address')->nullable();
             $table->string('shipping_code')->nullable();
             $table->timestamp('expired_at')->nullable();
             $table->timestamps();

@@ -15,7 +15,6 @@ class CreateProductsTable extends Migration
             $table->string('product_type');
             $table->string('description');
             $table->integer('price');
-            $table->string('shipping_address');
             $table->timestamps();
         });
     }

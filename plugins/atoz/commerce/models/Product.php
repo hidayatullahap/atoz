@@ -20,7 +20,13 @@ class Product extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'product_type',
+        'description',
+        'price',
+        'shipping_address',
+    ];
 
     /**
      * @var array Relations
