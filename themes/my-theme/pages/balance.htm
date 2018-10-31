@@ -9,3 +9,35 @@ redirect = "login"
 
 [atozAccount]
 ==
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-6 text-left">
+            <h3>Prepaid Balance</h3>
+            <form data-request="onAddOrder">
+                <div class="form-group">
+                    <label for="userPhone">Phone Number</label>
+                    <input
+                        name="phone"
+                        type="tel"
+                        class="form-control"
+                        id="userPhone"
+                        placeholder="example: 081253538989"
+                        pattern="(081.+)"
+                        title="Format phone 081(then your number)"
+                        required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="sel1">Select list:</label>
+                    <select class="form-control" id="sel1" name="value" required>
+                        <option value="10000">10000</option>
+                        <option value="50000">50000</option>
+                        <option value="100000">100000</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

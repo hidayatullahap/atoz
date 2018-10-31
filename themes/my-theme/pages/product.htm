@@ -9,3 +9,45 @@ is_hidden = 0
 security = "user"
 redirect = "login"
 ==
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-6 text-left">
+            <h3>Order Product</h3>
+            <form data-request="onAddOrder">
+                <div class="form-group">
+                    <label for="product">Product</label>
+                    <input
+                        name="product"
+                        type="text"
+                        class="form-control"
+                        id="product"
+                        required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="product">Shipping Address</label>
+                    <input
+                        name="address"
+                        type="text"
+                        class="form-control"
+                        id="product"
+                        pattern=".{10,150}$"
+                        title="Minimum 10 and max 150 character"
+                        required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="product">Price</label>
+                    <input
+                        name="price"
+                        type="number"
+                        class="form-control"
+                        id="product"
+                        title="Minimum 10 and max 150 character"
+                        required/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
