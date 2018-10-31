@@ -20,7 +20,10 @@ class OrderStatusLog extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'status_code',
+        'order_number',
+    ];
 
     /**
      * @var array Relations

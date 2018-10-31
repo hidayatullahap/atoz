@@ -25,7 +25,6 @@ class Product extends Model
         'product_type',
         'description',
         'price',
-        'shipping_address',
     ];
 
     /**

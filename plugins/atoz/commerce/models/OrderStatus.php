@@ -20,7 +20,11 @@ class OrderStatus extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'code',
+        'description',
+    ];
 
     /**
      * @var array Relations

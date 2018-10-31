@@ -20,7 +20,17 @@ class Order extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id',
+        'product_type',
+        'order_number',
+        'status_code',
+        'sum',
+        'total',
+        'shipping_address',
+        'shipping_code',
+        'expired_at',
+    ];
 
     /**
      * @var array Relations
