@@ -2,9 +2,13 @@ name: 'Main Menu'
 items:
     -
         title: Home
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: home
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '1'
             cssClass: ''
@@ -44,6 +48,15 @@ items:
         reference: product
         cmsPage: ''
         replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Order
+        type: cms-page
+        code: ''
+        reference: order
         viewBag:
             isHidden: '0'
             cssClass: ''
