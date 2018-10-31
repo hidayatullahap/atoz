@@ -1,10 +1,14 @@
 name: 'Main Menu'
 items:
     -
-        title: 'Home'
+        title: Home
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: home
+        cmsPage: ''
+        replace: ''
         viewBag:
             isExternal: '0'
             isHidden: '0'
@@ -15,6 +19,6 @@ items:
         code: ''
         reference: static/privacy-policy
         viewBag:
-            isExternal: '0'
-            isHidden: '0'
+            isHidden: '1'
             cssClass: ''
+            isExternal: '0'

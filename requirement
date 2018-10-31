@@ -1,0 +1,46 @@
+Product
+-description of the item
+-price 
+-shipping address
+
+(Value + 10.000)
+Generate 8 letters of random character to be the Shipping Code.
+
+PrepaidBalance
+-phone_number
+-total
+
+(Total = Value + 5%)
+If the paid time happened in the daylight (9AM to 5PM) there is 90% success rate for inserting the balance, 40% otherwise.
+Random the success rate by the hour and mark that the process is failed or success
+
+Order
+-order_type
+-order_number (10 digit random number)
+-status_code
+-sum
+-total
+-created_at
+-updated_at
+-expired_at
+-shipping_code
+
+(An order can be paid only 5 minutes after creation, after that the order will be canceled.)
+
+Order Status
+-paid
+-canceled
+-seen
+
+Order Type
+-id
+-name
+
+Order Status Log
+-order_id
+-status_code
+
+User
+-id
+-name
+-email
