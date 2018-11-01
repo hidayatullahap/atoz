@@ -43,4 +43,9 @@ DB_PASSWORD=
 ```sh
 $ php artisan october:up
 ```
-10. Congratulation atoz has been installed to your machine
+
+10. Run project scheduler
+```sh
+$ php artisan schedule:run
+```
+11. Congratulation atoz has been installed to your machine
