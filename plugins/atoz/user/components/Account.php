@@ -76,7 +76,7 @@ class Account extends ComponentBase
 
             $rules['login'] = 'required|email|between:6,255';
 
-            $rules['password'] = 'required|between:4,255';
+            $rules['password'] = 'required|between:6,255';
 
             if (!array_key_exists('login', $data)) {
                 $data['login'] = post('username', post('email'));
@@ -134,7 +134,7 @@ class Account extends ComponentBase
             $rules = [
                 'name'    => 'required',
                 'email'    => 'required|email|between:6,255',
-                'password' => 'required|between:4,255|confirmed'
+                'password' => 'required|between:6,255|confirmed'
             ];
 
             if ($this->loginAttribute() == UserSettings::LOGIN_USERNAME) {
