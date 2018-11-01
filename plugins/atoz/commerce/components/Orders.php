@@ -24,11 +24,9 @@ class Orders extends ComponentBase
     {
         // dd(post());
         $data = post();
-        $orderNumber = $this->createOrderNumber();
         $shippingCode = $this->createShippingCode();
         $price  = $data['price'];
         $type   = $data['type'];
-        $total  = $this->getTotalPrice($price, $type);
 
         try{
             if($type == "normal"){
@@ -39,26 +37,27 @@ class Orders extends ComponentBase
                     'price'         => $price,
                 ])->id;
                 $address = $data['address'];
+                $phoneNumber = NULL;
             }elseif($type == "prepaid"){
                 $productId      = NULL;
                 $address        = NULL;
                 $shippingCode   = NULL;
+                $phoneNumber    = $data['phone'];
             }else{
                 throw new ApplicationException("Type did not exist");
             }
             
-            Order::create([
+            $orderNumber = Order::create([
                 'user_id'           => Auth::getUser()->id,
                 'product_id'        => $productId,
                 'product_type'      => $type,
-                'order_number'      => $orderNumber,
+                'phone_number'      => $phoneNumber,
                 'status_code'       => 'seen',
                 'sum'               => $price,
-                'total'             => $total,
                 'shipping_address'  => $address,
                 'shipping_code'     => $shippingCode,
                 'expired_at'        => Carbon::now()->addMinutes(5),
-            ]);
+            ])->order_number;
             
             OrderStatusLog::create([
                 'status_code'  => 'seen',
@@ -74,25 +73,13 @@ class Orders extends ComponentBase
         }
     }
 
-    public function createOrderNumber()
-    {
-        return mt_rand(00000000000, 9999999999);
-    }
-
     public function createShippingCode()
     {
         return strtoupper(substr(md5(microtime()),rand(0,26),8));
     }
-    
-    public function getTotalPrice($price, $type)
+
+    public function getOrders()
     {
-        if($type == "normal"){
-            $total = $price + 10000;
-        }elseif($type == "prepaid"){
-            $total = $price * 1.05;
-        }else{
-            throw new ApplicationException("Type did not exist");
-        }
-        return $total;
+        return Order::where('user_id', Auth::getUser()->id)->get()->sortByDesc('created_at');
     }
 }

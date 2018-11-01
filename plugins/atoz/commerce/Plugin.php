@@ -51,7 +51,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Atoz\Commerce\Components\Orders' => 'AtozAccount',
+            'Atoz\Commerce\Components\Orders' => 'AtozOrders',
         ];
     }
 

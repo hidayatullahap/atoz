@@ -1,11 +1,13 @@
 title = "Order Finish"
-url = "/order-finish"
+url = "/order-finish/:order_number?"
 layout = "default"
 is_hidden = 0
 
 [session]
 security = "user"
 redirect = "login"
+
+[AtozOrders]
 ==
 <div class="container">
     <div class="row justify-content-center">
