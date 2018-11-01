@@ -28,42 +28,19 @@ items:
             isExternal: '0'
     -
         title: Product
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: product
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
-        items:
-            -
-                title: Balance
-                nesting: ''
-                type: cms-page
-                url: ''
-                code: ''
-                reference: balance
-                cmsPage: ''
-                replace: ''
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: Order
-                nesting: ''
-                type: cms-page
-                url: ''
-                code: ''
-                reference: order
-                cmsPage: ''
-                replace: ''
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
     -
-        title: Balance
+        title: 'Prepaid Balance'
         type: cms-page
         code: ''
         reference: balance

@@ -18,7 +18,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'user',
             'description' => 'No description provided yet...',
-            'author'      => 'atoz',
+            'author'      => 'Hidayatullah Agung P',
             'icon'        => 'icon-leaf'
         ];
     }

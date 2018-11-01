@@ -6,12 +6,16 @@ is_hidden = 0
 [session]
 security = "user"
 redirect = "login"
+
+[Atoz\Commerce\Components\Orders AtozAccount]
 ==
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-6 text-left">
             <h3>Prepaid Balance</h3>
-            <form data-request="onAddOrder">
+            <form 
+            data-request="onAddOrder"
+            data-request-data="'type':'prepaid'">
                 <div class="form-group">
                     <label for="userPhone">Phone Number</label>
                     <input
@@ -27,7 +31,8 @@ redirect = "login"
 
                 <div class="form-group">
                     <label for="sel1">Select list:</label>
-                    <select class="form-control" id="sel1" name="value" required>
+                    <select class="form-control" id="sel1" name="price" required>
+                        <option value="0" hidden>-Select topup in the list-</option>
                         <option value="10000">10000</option>
                         <option value="50000">50000</option>
                         <option value="100000">100000</option>

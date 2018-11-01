@@ -18,7 +18,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'commerce',
             'description' => 'No description provided yet...',
-            'author'      => 'atoz',
+            'author'      => 'Hidayatullah Agung P',
             'icon'        => 'icon-leaf'
         ];
     }
@@ -50,10 +50,8 @@ class Plugin extends PluginBase
      */
     public function registerComponents()
     {
-        return []; // Remove this line to activate
-
         return [
-            'Atoz\Commerce\Components\MyComponent' => 'myComponent',
+            'Atoz\Commerce\Components\Orders' => 'AtozAccount',
         ];
     }
 

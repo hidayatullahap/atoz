@@ -1,18 +1,10 @@
 <?php namespace Atoz\User\Components;
 
 use Cms\Classes\ComponentBase;
-use Auth;
-use Validator;
+
 use RainLab\User\Models\Settings as UserSettings;
-use Tristar\Fleet\Models\Order as MyOrder;
-use Tristar\Fleet\Models\Cart;
-use Tristar\Fleet\Models\ItemOrder;
-use Session;
 use Cms\Classes\Page;
-use Redirect;
-use Event;
-use ValidationException;
-use Flash;
+use Session, Auth, Validator, Redirect, Event, ValidationException, Flash;
 
 class Account extends ComponentBase
 {

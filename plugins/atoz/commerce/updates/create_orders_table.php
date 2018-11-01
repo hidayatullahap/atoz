@@ -12,9 +12,11 @@ class CreateOrdersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('user_id');
+            $table->string('product_id')->nullable();
             $table->string('product_type');
             $table->string('order_number');
             $table->string('status_code');
+            $table->string('phone_number')->nullable();
             $table->integer('sum')->nullable()->unsigned();
             $table->integer('total')->nullable()->unsigned();
             $table->string('shipping_address')->nullable();
