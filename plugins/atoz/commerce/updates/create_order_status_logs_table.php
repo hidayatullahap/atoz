@@ -13,6 +13,7 @@ class CreateOrderStatusLogsTable extends Migration
             $table->increments('id');
             $table->string('status_code');
             $table->string('order_number');
+            $table->boolean('isSucceed')->nullable()->default(TRUE);
             $table->timestamps();
         });
     }

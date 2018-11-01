@@ -1,7 +1,9 @@
 <?php namespace Atoz\Commerce\Components;
 
+use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Input, Redirect, Flash, Auth;
+use Atoz\Commerce\Classes\PaymentHelper;
 use Atoz\Commerce\Models\{Order, OrderStatusLog};
 class Payments extends ComponentBase
 {
@@ -36,10 +38,26 @@ class Payments extends ComponentBase
             $order = Order::where('order_number', $order_number)->first();
             if($order){
                 if(!$this->checkOrderBelongToUser($order->user_id)) throw new \ApplicationException("Order number is not belong to you");
+                if($order->expired_at < Carbon::now()->format('Y-m-d H:i:s')) throw new \ApplicationException("Order has beed expired please create new order");
                 $status = $order->log_statuses->last();
                 $status ? $status = $status->status_code : $status = NULL;
                 if($status == "seen"){
+                    $isSuccess = PaymentHelper::determinePaymentStatus();
+                    if($order->product_type == "normal") $isSuccess = TRUE;
+                    $order->status_code = "paid";
+                    OrderStatusLog::create([
+                        'status_code'   => 'paid',
+                        'order_number'  => $order->order_number,
+                        'isSucceed'     => $isSuccess,
+                    ]);
 
+                    if($isSuccess){
+                        Flash::success("Payment with order number ".$order->order_number ." is success!");
+                    }else{
+                        Flash::error("Payment with order number ".$order->order_number ." paid, but failed to fill the balance");
+                    }
+
+                    return Redirect::to("/order");
                 }elseif($status == "paid"){
                     Flash::error('Order has been paid');
                 }elseif($status == "canceled"){
@@ -58,5 +76,5 @@ class Payments extends ComponentBase
     public function checkOrderBelongToUser($orderUserId){
         if(Auth::getUser()->id == $orderUserId) return TRUE;
         return FALSE;
-    } 
+    }
 }

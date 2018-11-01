@@ -23,6 +23,7 @@ class OrderStatusLog extends Model
     protected $fillable = [
         'status_code',
         'order_number',
+        'isSucceed',
     ];
 
     /**

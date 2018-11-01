@@ -76,7 +76,7 @@ class Orders extends ComponentBase
                 'order_number' => $orderNumber,
             ]);
 
-            Flash::success("Order berhasil dimasukan");
+            Flash::success("Order recorded");
             return Redirect::to('/order-finish/'.$orderNumber);
 
         }catch (Exception $ex){
