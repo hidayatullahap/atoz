@@ -1,7 +1,7 @@
 <?php namespace Atoz\Commerce\Components;
 
 use Cms\Classes\ComponentBase;
-use Input, Redirect, Flash;
+use Input, Redirect, Flash, Auth;
 use Atoz\Commerce\Models\{Order, OrderStatusLog};
 class Payments extends ComponentBase
 {
@@ -35,6 +35,7 @@ class Payments extends ComponentBase
             $order_number = Input::get('order_number');
             $order = Order::where('order_number', $order_number)->first();
             if($order){
+                if(!$this->checkOrderBelongToUser($order->user_id)) throw new \ApplicationException("Order number is not belong to you");
                 $status = $order->log_statuses->last();
                 $status ? $status = $status->status_code : $status = NULL;
                 if($status == "seen"){
@@ -44,7 +45,7 @@ class Payments extends ComponentBase
                 }elseif($status == "canceled"){
                     Flash::error('Order has been canceled');
                 }else{
-                    throw new ApplicationException("Status type is not found");
+                    throw new \Exception("Status type is not found");
                 }
             }else{
                 Flash::error('Order number is not found');
@@ -53,4 +54,9 @@ class Payments extends ComponentBase
             Flash::error('Please insert order number');
         }
     }
+
+    public function checkOrderBelongToUser($orderUserId){
+        if(Auth::getUser()->id == $orderUserId) return TRUE;
+        return FALSE;
+    } 
 }
