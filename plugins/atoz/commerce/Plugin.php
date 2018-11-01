@@ -52,6 +52,7 @@ class Plugin extends PluginBase
     {
         return [
             'Atoz\Commerce\Components\Orders' => 'AtozOrders',
+            'Atoz\Commerce\Components\Payments' => 'AtozPayments',
         ];
     }
 

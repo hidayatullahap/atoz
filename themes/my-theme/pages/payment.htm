@@ -1,11 +1,14 @@
 title = "Payment"
-url = "/payment"
+url = "/payment/:order_number?"
 layout = "default"
 is_hidden = 0
 
 [session]
 security = "user"
 redirect = "login"
+
+[AtozPayments]
+order_number = "{{ :order_number }}"
 ==
 <div class="container">
     <div class="row justify-content-center">
@@ -16,7 +19,8 @@ redirect = "login"
                         <input
                             type="text"
                             class="form-control"
-                            id="orderNumber"/>
+                            id="orderNumber"
+                            value="{{ order_number }}"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Pay</button>
                 </form>
