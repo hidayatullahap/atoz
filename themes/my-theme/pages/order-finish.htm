@@ -12,12 +12,22 @@ redirect = "login"
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-6 text-center">
-            <h3>Your Order Number</h3><br>
-            <label>xxx</label><br><br>
-            <h3>Total</h3><br>
-            <label>xxx</label><br><br>
-            <label>[Product name] that cost [price] will be shipped to [Shipping Address] after you pay</label><br>
-            <button class="btn btn-primary">Pay here</button>
+            {% if order %}
+                <h3>Your Order Number</h3><br>
+                <label>{{order.order_number}}</label><br><br>
+                <h3>Total</h3><br>
+                <label>{{order.total|number_format(0,',','.')}}</label><br><br>
+                {% if order.product_type == "prepaid" %}
+                    
+                    <label>Number {{ order.phone_number }} will be toped up with {{ order.sum|number_format(0, ',', '.')}} amount</label><br>
+                {% else %}
+                    <label>{{ order.product.name }} that cost {{ order.product.price }} will be shipped to {{order.shipping_address}} after you pay</label><br>
+                {% endif %}
+                <button class="btn btn-primary">Pay here</button>
+            {% else %}
+                <h3>Can not find that order number</h3>
+                <a href="/order" class="btn btn-primary">Go to order page</a>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -1,10 +1,10 @@
 <?php namespace Atoz\Commerce\Components;
 
 use Cms\Classes\ComponentBase;
-use Atoz\Commerce\Models\{Product, Order, OrderStatusLog};
-use Input, Redirect, Flash, Auth, ApplicationException;
+use Input, Request, Redirect, Flash, Auth, ApplicationException;
 use Carbon\Carbon;
-
+use Atoz\Commerce\Models\{Product, Order, OrderStatusLog};
+use Atoz\Commerce\Classes\OrderHelper;
 class Orders extends ComponentBase
 {
     public function componentDetails()
@@ -17,14 +17,26 @@ class Orders extends ComponentBase
 
     public function defineProperties()
     {
-        return [];
+        return [
+            'order_number' => [
+                'title'     => 'Order Number',
+                'type'      => 'string',
+                'default'   => '{{ :order_number }}',
+            ]
+        ];
+    }
+
+    public function onRun()
+    {
+        $currentUrl = request()->segment(1);
+        if($currentUrl == 'order-finish') $this->onFinishOrder();
     }
 
     public function onAddOrder()
     {
         // dd(post());
         $data = post();
-        $shippingCode = $this->createShippingCode();
+        $shippingCode = OrderHelper::createShippingCode();
         $price  = $data['price'];
         $type   = $data['type'];
 
@@ -73,13 +85,19 @@ class Orders extends ComponentBase
         }
     }
 
-    public function createShippingCode()
-    {
-        return strtoupper(substr(md5(microtime()),rand(0,26),8));
-    }
-
     public function getOrders()
     {
         return Order::where('user_id', Auth::getUser()->id)->get()->sortByDesc('created_at');
+    }
+
+    public function onFinishOrder()
+    {
+        $orderNumber = $this->property('order_number');
+
+        if($orderNumber){
+            $this->page['order'] = Order::where('order_number',$orderNumber)->first();
+        }else{
+            $this->page['order'] = NULL;
+        }
     }
 }
