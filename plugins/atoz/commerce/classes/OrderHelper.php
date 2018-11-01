@@ -3,7 +3,11 @@
 class OrderHelper
 {
     public static function generateOrderNumber() {
-        return mt_rand(00000000000, 9999999999);
+        $returnString = mt_rand(1, 9);
+        while (strlen($returnString) < 10) {
+            $returnString .= mt_rand(0, 9);
+        }
+        return $returnString;
     }
 
     public static function createShippingCode()

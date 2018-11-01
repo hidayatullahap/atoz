@@ -77,7 +77,7 @@ class Orders extends ComponentBase
             ]);
 
             Flash::success("Order berhasil dimasukan");
-            return Redirect::refresh();
+            return Redirect::to('/order-finish/'.$orderNumber);
 
         }catch (Exception $ex){
             Db::rollBack();

@@ -23,7 +23,7 @@ redirect = "login"
                 {% else %}
                     <label>{{ order.product.name }} that cost {{ order.product.price }} will be shipped to {{order.shipping_address}} after you pay</label><br>
                 {% endif %}
-                <button class="btn btn-primary">Pay here</button>
+                <a href="/payment/{{order.order_number}}" class="btn btn-primary">Pay Here</a>
             {% else %}
                 <h3>Can not find that order number</h3>
                 <a href="/order" class="btn btn-primary">Go to order page</a>
