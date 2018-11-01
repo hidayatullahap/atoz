@@ -29,7 +29,13 @@ class Orders extends ComponentBase
     public function onRun()
     {
         $currentUrl = request()->segment(1);
-        if($currentUrl == 'order-finish') $this->onFinishOrder();
+        if($currentUrl == 'order-finish'){
+            $this->onFinishOrder();
+        }elseif($currentUrl == "order"){
+            $search = request('search');
+            $this->page['search'] = $search;
+            $this->page['orders'] = $this->getOrders();
+        }
     }
 
     public function onAddOrder()
@@ -84,7 +90,7 @@ class Orders extends ComponentBase
 
     public function getOrders()
     {
-        return Order::where('user_id', Auth::getUser()->id)->orderBy('created_at','desc')->paginate(20);
+        return Order::where('user_id', Auth::getUser()->id)->where('order_number','like','%'.request('search').'%')->orderBy('created_at','desc')->paginate(20);
     }
 
     public function onFinishOrder()

@@ -9,9 +9,16 @@ redirect = "login"
 
 [Atoz\Commerce\Components\Orders Orders]
 ==
-{% set orders = Orders.getOrders %}
 <div class="container">
     <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <form>
+                <div class="text-right">
+                    <input type="text" name="search" placeholder="search order number">Search</input>
+                </div>
+            </form>
+        </div>
+        <br><br>
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-sm-1">
@@ -68,13 +75,17 @@ redirect = "login"
                 </div>
             </div>
             {% endfor %}
+
+            {% set query = null %}
+            {% if search %}
+                {% set query = "&search=" ~ search %}
+            {% endif %}
+            
+            <label>Page {{orders.currentPage()}} from {{orders.lastPage()}}</label>
             <nav aria-label="Page navigation example">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="{{orders.previousPageUrl()}}">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="{{orders.currentPageUrl()}}">{{orders.currentPage()}}</a></li>
-                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="/order?page={{orders.lastPage()}}">{{orders.lastPage()}}</a></li>
-                <li class="page-item"><a class="page-link" href="{{orders.nextPageUrl()}}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="{{orders.previousPageUrl() ~ query}}">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="{{orders.nextPageUrl() ~ query}}">Next</a></li>
             </ul>
             </nav>
         </div>
