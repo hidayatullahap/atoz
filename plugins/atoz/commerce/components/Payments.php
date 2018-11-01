@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Input, Redirect, Flash, Auth;
-use Atoz\Commerce\Classes\PaymentHelper;
+use Atoz\Commerce\Classes\{OrderHelper, PaymentHelper};
 use Atoz\Commerce\Models\{Order, OrderStatusLog};
 class Payments extends ComponentBase
 {
@@ -52,7 +52,13 @@ class Payments extends ComponentBase
                 $status ? $status = $status->status_code : $status = NULL;
                 if($status == "seen"){
                     $isSuccess = PaymentHelper::determinePaymentStatus();
-                    if($order->product_type == "normal") $isSuccess = TRUE;
+                    $shippingCode = NULL;
+                    if($order->product_type == "normal"){
+                        $shippingCode = OrderHelper::createShippingCode();
+                        $isSuccess = TRUE;
+                    }
+
+                    $order->shipping_code = $shippingCode;
                     $order->status_code = "paid";
                     $order->save();
 

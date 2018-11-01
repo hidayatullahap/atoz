@@ -36,7 +36,6 @@ class Orders extends ComponentBase
     {
         // dd(post());
         $data = post();
-        $shippingCode = OrderHelper::createShippingCode();
         $price  = $data['price'];
         $type   = $data['type'];
 
@@ -53,7 +52,6 @@ class Orders extends ComponentBase
             }elseif($type == "prepaid"){
                 $productId      = NULL;
                 $address        = NULL;
-                $shippingCode   = NULL;
                 $phoneNumber    = $data['phone'];
             }else{
                 throw new ApplicationException("Type did not exist");
@@ -67,7 +65,6 @@ class Orders extends ComponentBase
                 'status_code'       => 'seen',
                 'sum'               => $price,
                 'shipping_address'  => $address,
-                'shipping_code'     => $shippingCode,
                 'expired_at'        => Carbon::now()->addMinutes(5),
             ])->order_number;
             
