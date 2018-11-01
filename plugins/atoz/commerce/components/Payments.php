@@ -45,6 +45,8 @@ class Payments extends ComponentBase
                     $isSuccess = PaymentHelper::determinePaymentStatus();
                     if($order->product_type == "normal") $isSuccess = TRUE;
                     $order->status_code = "paid";
+                    $order->save();
+                    
                     OrderStatusLog::create([
                         'status_code'   => 'paid',
                         'order_number'  => $order->order_number,

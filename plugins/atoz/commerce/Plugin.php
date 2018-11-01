@@ -2,6 +2,7 @@
 
 use Backend;
 use System\Classes\PluginBase;
+use Atoz\Commerce\Models\{Order, OrderStatusLog};
 
 /**
  * commerce Plugin Information File
@@ -91,5 +92,22 @@ class Plugin extends PluginBase
                 'order'       => 500,
             ],
         ];
+    }
+
+    public function registerSchedule($schedule)
+    {
+        $schedule->call(function () {
+            $this->checkExpiredOrder();
+        })->everyMinute();
+    }
+
+    public function checkExpiredOrder()
+    {
+        $expiredOrders = Order::isExpiredSeen()->get();
+        
+        foreach($expiredOrders as $order){
+            $order->status_code = 'canceled';
+            $order->save();
+        }
     }
 }

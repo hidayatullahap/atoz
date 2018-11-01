@@ -19,7 +19,7 @@ class PaymentHelper
         if ($time >= $start && $time <= $end) {
             return (new self)->rollDice(90);
         }else{
-            return (new self)->rollDice(0);
+            return (new self)->rollDice(40);
         }
     }
 

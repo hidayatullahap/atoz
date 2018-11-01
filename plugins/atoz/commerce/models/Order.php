@@ -2,7 +2,7 @@
 
 use Model, ApplicationException;
 use Atoz\Commerce\Classes\OrderHelper;
-
+use Carbon\Carbon;
 /**
  * Order Model
  */
@@ -76,5 +76,15 @@ class Order extends Model
             throw new ApplicationException("Type did not exist");
         }
         return $total;
+    }
+    
+    public function scopeIsSeen($query)
+    {
+        return $query->where('status_code', 'seen');
+    }
+
+    public function scopeIsExpiredSeen($query)
+    {
+        return $query->where('status_code', 'seen')->where('expired_at','<',Carbon::now());
     }
 }
