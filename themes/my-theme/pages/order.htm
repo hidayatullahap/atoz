@@ -57,7 +57,7 @@ redirect = "login"
                             {% if prepaidStatus == 0 %}
                                 <label class="text-danger">fail</label>
                             {% else %}
-                                {{order.status_code}}
+                            <label class="text-success">success</label>
                             {% endif %}
                         {% endif %}
                     {% elseif order.status_code == "seen" %}
