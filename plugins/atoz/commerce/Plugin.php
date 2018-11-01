@@ -108,6 +108,12 @@ class Plugin extends PluginBase
         foreach($expiredOrders as $order){
             $order->status_code = 'canceled';
             $order->save();
+
+            OrderStatusLog::create([
+                'status_code'   => 'canceled',
+                'order_number'  => $order->order_number,
+                'isSucceed'     => TRUE,
+            ]);
         }
     }
 }

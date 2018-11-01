@@ -38,7 +38,16 @@ class Payments extends ComponentBase
             $order = Order::where('order_number', $order_number)->first();
             if($order){
                 if(!$this->checkOrderBelongToUser($order->user_id)) throw new \ApplicationException("Order number is not belong to you");
-                if($order->expired_at < Carbon::now()->format('Y-m-d H:i:s')) throw new \ApplicationException("Order has beed expired please create new order");
+                if($order->expired_at < Carbon::now()->format('Y-m-d H:i:s')){
+                    throw new \ApplicationException("Order has beed expired please create new order");
+                    $order->status_code = 'canceled';
+
+                    OrderStatusLog::create([
+                        'status_code'   => 'canceled',
+                        'order_number'  => $order->order_number,
+                        'isSucceed'     => TRUE,
+                    ]);
+                }
                 $status = $order->log_statuses->last();
                 $status ? $status = $status->status_code : $status = NULL;
                 if($status == "seen"){
@@ -46,7 +55,7 @@ class Payments extends ComponentBase
                     if($order->product_type == "normal") $isSuccess = TRUE;
                     $order->status_code = "paid";
                     $order->save();
-                    
+
                     OrderStatusLog::create([
                         'status_code'   => 'paid',
                         'order_number'  => $order->order_number,
