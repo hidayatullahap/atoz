@@ -13,13 +13,14 @@ order_number = "{{ :order_number }}"
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-6 text-center">
-                <form data-request="onAddOrder">
+                <form data-request="onPayProduct">
                     <div class="form-group">
                         <label for="orderNumber">Order Number</label>
                         <input
                             type="text"
                             class="form-control"
                             id="orderNumber"
+                            name="order_number"
                             value="{{ order_number }}"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Pay</button>
