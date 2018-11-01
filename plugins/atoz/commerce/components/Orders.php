@@ -87,7 +87,7 @@ class Orders extends ComponentBase
 
     public function getOrders()
     {
-        return Order::where('user_id', Auth::getUser()->id)->paginate(20)->sortByDesc('created_at');
+        return Order::where('user_id', Auth::getUser()->id)->orderBy('created_at','desc')->paginate(20);
     }
 
     public function onFinishOrder()
